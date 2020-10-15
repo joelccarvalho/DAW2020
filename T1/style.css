@@ -1,0 +1,35 @@
+.copyright {
+    text-align: right;
+}
+
+.footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    color: #fff;
+}
+
+.color-style {
+    background-color: #a95454ab;
+    color: white;
+}
+
+.author {
+    text-align: right;
+    font-size: 10px;
+}
+
+.sidebar-text {
+    list-style-type: none;
+}
+
+.text-sidebar {
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+}
