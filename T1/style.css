@@ -4,14 +4,13 @@
 
 .footer {
     bottom: 0;
-    position: fixed;
     width: 100%;
     color: #fff;
 }
 
 .color-style {
-    background-color: #a95454ab;
-    color: white;
+    background-color: #f8f9fa;
+    color: #181819;
 }
 
 .author {
