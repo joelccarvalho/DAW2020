@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project_record SYSTEM "projRecord.dtd">
+<?xml-stylesheet href="projRecord.css"?>
+
+<project_record pr_name="Project Record"> 
+  <identification>
+    <key_name>
+      <style type="uppercase">
+        T2_MEI_PG42837
+      </style>
+    </key_name>
+    <title>TPC 2</title>
+    <subtitle>Project Record TPC 2</subtitle>
+    <begin_date>Outubro 2020</begin_date>
+    <end_date>Outubro 2020</end_date>
+    <supervisors>
+      <supervisor>
+        <name>José Carlos Ramalho</name>
+        <email>jcr@di.uminho.pt</email>
+      </supervisor>
+    </supervisors>
+  </identification>
+  <work_team>
+    <element id="el1">
+      <name>Joel Costa Carvalho</name>
+      <email>pg42837@alunos.uminho.pt</email>
+    </element>
+  </work_team>
+  <abstract>
+    <paragraph>
+      <style type="uppercase">
+        XML
+      </style>
+      <style type="italic">
+        (Extensible Markup Language) 
+      </style>
+      é uma recomendação da 
+      <style type="uppercase">
+        W3C
+      </style>
+      para gerar 
+      <style type="bold">
+        linguagens de marcação 
+      </style>
+      para necessidades especiais. 
+    </paragraph>
+    <paragraph>
+      O projeto desenvolvido consiste na construção de um project 
+      record em <style type="uppercase">XML </style> e consequentemente o seu 
+      <style type="uppercase">DTD</style> 
+      <style type="italic"> (Document Type Definition)</style> devidamente
+      estruturado, de modo a efetuar uma avaliação precisa da informação
+      digitada no <style type="uppercase">XML </style>.
+    </paragraph>
+    <paragraph>
+      Definição DTD
+    </paragraph>
+    <paragraph>
+      Lorem 4
+    </paragraph>
+  </abstract>
+  <deliverables>
+    <deliverable id="d1">
+      <name>Project Record: DTD e XML</name>
+      <link>N/A</link>
+    </deliverable>
+  </deliverables>
+</project_record>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT project_record (identification, work_team, abstract, deliverables) >
+
+<!ATTLIST project_record pr_name CDATA #REQUIRED>
+
+<!ELEMENT identification (key_name, title, subtitle, begin_date, end_date, supervisors)>
+<!ELEMENT key_name (style)>
+
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT subtitle (#PCDATA)>
+<!ELEMENT begin_date (#PCDATA)>
+<!ELEMENT end_date (#PCDATA)>
+<!ELEMENT supervisors (supervisor)+>
+
+<!ELEMENT supervisor (name, email)>
+
+<!ELEMENT work_team (element)+ >
+<!ELEMENT element (name, email, site?) >
+<!ATTLIST element id ID #REQUIRED>
+
+<!ELEMENT abstract (paragraph)+ >
+<!ELEMENT paragraph (#PCDATA|style)* >
+
+<!ELEMENT style (#PCDATA)>
+<!ATTLIST style type (none|uppercase|bold|italic|underline) "none">
+
+<!ELEMENT deliverables (deliverable)+ >
+<!ELEMENT deliverable (name, link)>
+<!ATTLIST deliverable id ID #REQUIRED>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT link (#PCDATA)>
