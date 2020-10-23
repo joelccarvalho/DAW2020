@@ -28,41 +28,38 @@
   </work_team>
   <abstract>
     <paragraph>
-      <style type="uppercase">
-        XML
-      </style>
-      <style type="italic">
-        (Extensible Markup Language) 
-      </style>
-      é uma recomendação da 
-      <style type="uppercase">
-        W3C
-      </style>
-      para gerar 
-      <style type="bold">
-        linguagens de marcação 
-      </style>
-      para necessidades especiais. 
-    </paragraph>
-    <paragraph>
-      O projeto desenvolvido consiste na construção de um project 
-      record em <style type="uppercase">XML </style> e consequentemente o seu 
+      O projeto desenvolvido consiste na construção de um <style type="italic">project record</style> 
+      em <style type="uppercase">XML </style> e consequentemente o seu 
       <style type="uppercase">DTD</style> 
-      <style type="italic"> (Document Type Definition)</style> devidamente
-      estruturado, de modo a efetuar uma avaliação precisa da informação
+      devidamente estruturado, de modo a efetuar uma avaliação precisa da informação
       digitada no <style type="uppercase">XML </style>.
     </paragraph>
     <paragraph>
-      Definição DTD
+      <style type="uppercase">XML </style>
+      <style type="italic"> (Extensible Markup Language)</style>
+      é uma recomendação da <style type="uppercase"> W3C </style>
+      para gerar <style type="bold"> linguagens de marcação </style>
+      para necessidades especiais. 
     </paragraph>
     <paragraph>
-      Lorem 4
+      <style type="uppercase">DTD </style> <style type="italic"> (Document Type Definition)</style> consiste numa definição do tipo de documento.
+      Ou seja, define a estrutura e quais os elementos e atributos pertencentes a um determinado <style type="uppercase">XML </style>.
+      Com isto, obtemos uma análise e validação de cada elemento do ficheiro <style type="uppercase">XML </style>.
+    </paragraph>
+    <paragraph>
+      Futuramente, iremos introduzir o <style type="uppercase">XSLT </style>
+      <style type="italic">(eXtensible Stylesheet Language) </style> que define apresentação dos documentos
+      <style type="uppercase">XML </style> em browsers, alinhando e formatando cada elemento no formato desejado pelo programador.
     </paragraph>
   </abstract>
   <deliverables>
     <deliverable id="d1">
+      <name>HTML e CSS: Gatos</name>
+      <link>https://github.com/joelccarvalho/DAW2020/tree/master/T1</link>
+    </deliverable>
+    <deliverable id="d2">
       <name>Project Record: DTD e XML</name>
-      <link>N/A</link>
+      <link>https://github.com/joelccarvalho/DAW2020/tree/master/T2</link>
     </deliverable>
   </deliverables>
 </project_record>

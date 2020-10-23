@@ -4,7 +4,7 @@
 
 <!ATTLIST project_record pr_name CDATA #REQUIRED>
 
-<!ELEMENT identification (key_name, title, subtitle, begin_date, end_date, supervisors)>
+<!ELEMENT identification (key_name, title, subtitle?, begin_date, end_date, supervisors)>
 <!ELEMENT key_name (style)>
 
 <!ELEMENT title (#PCDATA)>
