@@ -17,6 +17,8 @@
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
                 </head>
                 <body>
+                    <h1 class="display-4">Lista de ARQELEM</h1>
+                    <hr/>
                     <div class="list-group">
                         <xsl:apply-templates select="ARQSITS" mode="indice"/>
                         <xsl:apply-templates select="ARQSITS"/>
@@ -29,6 +31,7 @@
     <!-- Index.html -->
     <xsl:template match="ARQSITS" mode="indice">
         <xsl:for-each select="ARQELEM">
+            <a name="i{generate-id()}"/>
             <a href="{generate-id()}.html"
                 class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -131,7 +134,7 @@
                                 <button class="btn btn-outline-info btn-lg btn-block" type="button" data-toggle="collapse"
                                     data-target="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample"> Detalhes geográficos </button>
-                                <xsl:if test="INTERE">
+                                <xsl:if test="BIBLIO">
                                     <button type="button" class="btn btn-outline-info btn-lg btn-block" data-toggle="modal" data-target="#refsBiblio">
                                         Referências bibliográficas
                                     </button>
@@ -208,7 +211,7 @@
                             <center>
                                 <div class="btn-group center" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>
-                                    <button type="button" class="btn btn-secondary"><a style="color: white; !important" href="index.html">Voltar</a></button>
+                                    <button type="button" class="btn btn-secondary"><a style="color: white; !important" href="index.html#i{generate-id()}">Voltar</a></button>
                                     <button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>
                                 </div>
                             </center>
