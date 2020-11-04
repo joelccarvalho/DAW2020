@@ -21,6 +21,7 @@
         <p>Para a utilização do servidor deverá: 
             1. <i>node server.js</i>
             2. Executar cenário do <i>Oxygen XML Editor</i> ou abrir <link url="http://localhost:7777/index">AQUI</link>
+            3. Mudar de arqs, aceder a <link url="http://localhost:7777/arqs/1">AQUI</link> e mudar número pretendido.
         </p>
         <p>Finalizando, o trabalho apresentado contempla <b>o DTD, o XML, o Servidor Node.js e todos os resultados gerados.</b></p>
     </abstract>
