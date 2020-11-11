@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pr>
+    <meta>
+        <key>JOEL_MEI_2020_T4</key>
+        <title>T5 - Desenvolvimento de um servidor Node.js e consumi-la.</title>
+        <bdate>Novembro 2020</bdate>
+        <edate>Novembro 2020</edate>
+        <supervisor>José Carlos Ramalho</supervisor>
+    </meta>
+    <team>
+        <member id="PG42837">
+            <name>Joel Costa Carvalho</name>
+            <email>pg42837@alunos.uminho.pt</email>
+        </member>
+    </team>
+    <abstract>
+        <p>Utilizando o <i>dataset</i> arq.xml foi-me proposto a criação de um servidor <i>Node.js </i> para a interação com o ficheiro <b>arq.xsl</b></p>
+        <p>O <i>Node.js</i> trata-se de um <i>software open-source, cross-platform,</i> e de um <i>runtime</i> de <i>JavaScript</i> que execute código de <i>JavaScript</i> a nível <i>backend</i> e <i>frontend</i></p>
+        <p>Para a utilização do servidor deverá: 
+            1. <i>node server.js</i>
+            2. Executar cenário do <i>Oxygen XML Editor</i> ou abrir <link url="http://localhost:7777/index">AQUI</link>
+            3. Mudar de arqs, aceder a <link url="http://localhost:7777/arqs/1">AQUI</link> e mudar número pretendido.
+        </p>
+        <p>Finalizando, o trabalho apresentado contempla <b>o DTD, o XML, o Servidor Node.js e todos os resultados gerados.</b></p>
+    </abstract>
+    <deriverables>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T1">HTML e CSS: Gatos</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T2">Project Record: DTD e XML</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T3">XSLT</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T4">Servidor Node.js</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T5">Serviço Node.js</link>
+    </deriverables>
+</pr>
