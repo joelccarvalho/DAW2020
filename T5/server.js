@@ -1,5 +1,6 @@
 var http = require('http');
 const axios = require('axios');
+const booststrapLink = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>';
 
 http.createServer(function (req, res) {
     console.log(req.method +  " " + req.url);
@@ -7,28 +8,36 @@ http.createServer(function (req, res) {
     if (req.method == 'GET') {
         if (req.url == '/') {
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
-            res.write('<h2>Escola de Música</h2>');
-            res.write('<ul>');
-            res.write('<li><a href="/alunos">Lista de Alunos</a></li>');
-            res.write('<li><a href="/cursos">Lista de Cursos</a></li>');
-            res.write('<li><a href="/instrumentos">Lista de Instrumentos</a></li>');
-            res.write('</ul>');
+            res.write(booststrapLink);
+            res.write('<h1>Listas disponíveis: </h1>');
+            res.write('<h6>(Selecione uma)</h6>');
+            res.write('<div class="list-group">');
+            res.write('<a href="/alunos" class="list-group-item list-group-item-action">Lista de Alunos</a></li>');
+            res.write('<a href="/cursos" class="list-group-item list-group-item-action">Lista de Cursos</a></li>');
+            res.write('<a href="/instrumentos" class="list-group-item list-group-item-action">Lista de Instrumentos</a></li>');
+            res.write('</div>');
             res.end(); 
         }
+        // ALUNOS
         else if (req.url == '/alunos') {
             axios.get('http://localhost:3001/alunos')
                 .then(resp => {
                     alunos = resp.data;
 
                     res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
-                    res.write('<h2>Escola de Música: Lista de Alunos</h2>');
-                    res.write('<ul>');
+                    res.write(booststrapLink);
+                    res.write('<div class="jumbotron"><h1 class="display-4">Escola de Música: Lista de Alunos</h1>');
+                    res.write('<table class="table table-striped">');
+                    res.write('<thead><tr><th scope="col">ID</th><th scope="col">Nome</th></tr></thead><tbody>');
 
                     alunos.forEach(element => {
-                        res.write('<a href="alunos/' + element.id + '"><li>' + element.id + '-' + element.nome + '</li></a>');
+                        res.write('<tr>');
+                        res.write('<th scope="row"><a href="alunos/' + element.id + '">'+ element.id +'</a></th>');
+                        res.write('<td><a href="alunos/' + element.id + '">' + element.nome + '</a></td>');
+                        res.write('</tr>');
                     });
 
-                    res.write('</ul>');
+                    res.write('</tbody></table>');
                     res.write('<address>[<a href="/">Voltar</a>]</address>');
                     res.end();
                 })
@@ -44,22 +53,137 @@ http.createServer(function (req, res) {
                     data = resp.data;
                     console.log(data);
                     res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
-                    res.write('<h2>Aluno nº'+ num +'</h2>');
-                    res.write('<p>');
-                    res.write(data.id + data.nome + data.dataNasc + data.curso + data.instrumento);
-                    res.write('</p>');
-                    res.write('<address>[<a href="/">Voltar</a>]</address>');
+                    res.write(booststrapLink);
+                    res.write('<div class="jumbotron">');
+                    res.write('<h1 class="display-4">' + data.nome + '</h1>');
+                    res.write('<h6>' + data.id + '</h6>');
+                    res.write('<h6><i>Instrumento: ' + data.instrumento + '</i></h6>');
+                    res.write('<p class="badge badge-secondary"> ' + data.dataNasc + '</p>');
+                    res.write('<hr class="my-4"/>');
+                    res.write('<p><b>Curso: </b>' + data.anoCurso + ' - ' +data.curso + '</p>');
+                    res.write('<hr/>');
+                    res.write('<center>');
+                    res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/alunos">Voltar</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>');
+                    res.write('</div>');
+                    res.write('</center>');
+                    res.write('</div>');
                     res.end();
                 })
                 .catch(function (error) {
                     console.log('Erro na obtenção na lista de alunos: ' + error);
                 })
         }
-        else if (req.url == 'cursos') {
+        // CURSOS
+        else if (req.url == '/cursos') {
+            axios.get('http://localhost:3001/cursos')
+                .then(resp => {
+                    cursos = resp.data;
 
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+                    res.write(booststrapLink);
+                    res.write('<div class="jumbotron"><h1 class="display-4">Escola de Música: Lista de Cursos</h1>');
+                    res.write('<table class="table table-striped">');
+                    res.write('<thead><tr><th scope="col">ID</th><th scope="col">Nome</th></tr></thead><tbody>');
+
+                    cursos.forEach(element => {
+                        res.write('<tr>');
+                        res.write('<th scope="row"><a href="cursos/' + element.id + '">'+ element.id +'</a></th>');
+                        res.write('<td><a href="cursos/' + element.id + '">' + element.designacao + '</a></td>');
+                        res.write('</tr>');
+                    });
+
+                    res.write('</tbody></table>');
+                    res.write('<address>[<a href="/">Voltar</a>]</address>');
+                    res.end();
+                })
+                .catch(function (error) {
+                    console.log('Erro na obtenção na lista de cursos: ' + error);
+                })
         }
-        else if (req.url == 'instrumentos') {
+        else if (req.url.match(/\/cursos\/(CS|CB)[0-9]+$/)) {
+            var num = req.url.replace('/cursos/', '');
 
+            axios.get('http://localhost:3001/cursos/' + num)
+                .then(resp => {
+                    data = resp.data;
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+                    res.write(booststrapLink);
+                    res.write('<div class="jumbotron">');
+                    res.write('<h1 class="display-4">' + data.designacao + '</h1>');
+                    res.write('<h6>' + data.id + '</h6>');
+                    res.write('<p class="badge badge-secondary"> ' + data.duracao + ' anos</p>');
+                    res.write('<hr class="my-4"/>');
+                    res.write('<p><b>Instrumento: </b>' + data.instrumento.id + '-' + data.instrumento.text + '</p>');
+                    res.write('<hr/>');
+                    res.write('<center>');
+                    res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/cursos">Voltar</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>');
+                    res.write('</div>');
+                    res.write('</center>');
+                    res.write('</div>');
+                    res.end();
+                })
+                .catch(function (error) {
+                    console.log('Erro na obtenção na lista de cursos: ' + error);
+                })
+        }
+         // INSTRUMENTOS
+         else if (req.url == '/instrumentos') {
+            axios.get('http://localhost:3001/instrumentos')
+                .then(resp => {
+                    instrumentos = resp.data;
+
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+                    res.write(booststrapLink);
+                    res.write('<div class="jumbotron"><h1 class="display-4">Escola de Música: Lista de Instrumentos</h1>');
+                    res.write('<table class="table table-striped">');
+                    res.write('<thead><tr><th scope="col">ID</th><th scope="col">Nome</th></tr></thead><tbody>');
+
+                    instrumentos.forEach(element => {
+                        res.write('<tr>');
+                        res.write('<th scope="row"><a href="instrumentos/' + element.id + '">'+ element.id +'</a></th>');
+                        res.write('<td><a href="instrumentos/' + element.id + '">' + element.text + '</a></td>');
+                        res.write('</tr>');
+                    });
+
+                    res.write('</tbody></table>');
+                    res.write('<address>[<a href="/">Voltar</a>]</address>');
+                    res.end();
+                })
+                .catch(function (error) {
+                    console.log('Erro na obtenção na lista de instrumentos: ' + error);
+                })
+        }
+        else if (req.url.match(/\/instrumentos\/(I)[0-9]+$/)) {
+            var num = req.url.replace('/instrumentos/', '');
+
+            axios.get('http://localhost:3001/instrumentos/' + num)
+                .then(resp => {
+                    data = resp.data;
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+                    res.write(booststrapLink);
+                    res.write('<div class="jumbotron">');
+                    res.write('<h1 class="display-4">' + data.text + '</h1>');
+                    res.write('<h6>' + data.id + '</h6>');
+                    res.write('<hr/>');
+                    res.write('<center>');
+                    res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/instrumentos">Voltar</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>');
+                    res.write('</div>');
+                    res.write('</center>');
+                    res.write('</div>');
+                    res.end();
+                })
+                .catch(function (error) {
+                    console.log('Erro na obtenção na lista de instrumentos: ' + error);
+                })
         }
         else {
             res.writeHead(200, {'Content-Type': 'text/html'});
