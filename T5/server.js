@@ -19,8 +19,10 @@ http.createServer(function (req, res) {
             res.end(); 
         }
         // ALUNOS
-        else if (req.url == '/alunos') {
-            axios.get('http://localhost:3001/alunos')
+        else if (req.url == '/alunos'|| req.url.match(/\/alunos\?_page=[0-9]+$/)){
+            var page = req.url.match(/\/alunos\?_page=[0-9]+$/) != undefined ?  req.url.replace('/alunos?_page=', '') : 1;
+
+            axios.get('http://localhost:3001/alunos?_page='+ page)
                 .then(resp => {
                     alunos = resp.data;
 
@@ -38,9 +40,27 @@ http.createServer(function (req, res) {
                     });
 
                     res.write('</tbody></table>');
+
+                    var pags = resp.headers.link.split(',');
+                    var flagNext = false;
+
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Voltar</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Home Page</a></button>');
+
+                    pags.forEach(pag => {
+                        if (pag.includes("first") && page != 1)
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Início da Lista</a></button>');
+                        else if (pag.includes("next")){
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Seguinte</a></button>');
+                            flagNext = true;
+                        }
+                        else if (pag.includes("prev"))
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Anterior</a></button>');
+                        else if (pag.includes("last") && flagNext)
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Último</a></button>');
+                    });
+
                     res.write('</div>');
                     res.write('</center>');
                     res.end();
@@ -68,9 +88,7 @@ http.createServer(function (req, res) {
                     res.write('<hr/>');
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>');
                     res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/alunos">Voltar</a></button>');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>');
                     res.write('</div>');
                     res.write('</center>');
                     res.write('</div>');
@@ -81,8 +99,10 @@ http.createServer(function (req, res) {
                 })
         }
         // CURSOS
-        else if (req.url == '/cursos') {
-            axios.get('http://localhost:3001/cursos')
+        else if (req.url == '/cursos' || req.url.match(/\/cursos\?_page=[0-9]+$/)){
+            var page = req.url.match(/\/cursos\?_page=[0-9]+$/) != undefined ?  req.url.replace('/cursos?_page=', '') : 1;
+
+            axios.get('http://localhost:3001/cursos?_page='+ page)
                 .then(resp => {
                     cursos = resp.data;
 
@@ -101,9 +121,27 @@ http.createServer(function (req, res) {
 
                     res.write('</tbody></table>');
                     res.write('</tbody></table>');
+
+                    var pags = resp.headers.link.split(',');
+                    var flagNext = false;
+
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Voltar</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Home Page</a></button>');
+
+                    pags.forEach(pag => {
+                        if (pag.includes("first") && page != 1)
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Início da Lista</a></button>');
+                        else if (pag.includes("next")){
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Seguinte</a></button>');
+                            flagNext = true;
+                        }
+                        else if (pag.includes("prev"))
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Anterior</a></button>');
+                        else if (pag.includes("last") && flagNext)
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Último</a></button>');
+                    });
+
                     res.write('</div>');
                     res.write('</center>');
                     res.end();
@@ -129,9 +167,7 @@ http.createServer(function (req, res) {
                     res.write('<hr/>');
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>');
                     res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/cursos">Voltar</a></button>');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>');
                     res.write('</div>');
                     res.write('</center>');
                     res.write('</div>');
@@ -142,8 +178,10 @@ http.createServer(function (req, res) {
                 })
         }
          // INSTRUMENTOS
-         else if (req.url == '/instrumentos') {
-            axios.get('http://localhost:3001/instrumentos')
+         else if (req.url == '/instrumentos' || req.url.match(/\/instrumentos\?_page=[0-9]+$/)){
+            var page = req.url.match(/\/instrumentos\?_page=[0-9]+$/) != undefined ?  req.url.replace('/instrumentos?_page=', '') : 1;
+
+            axios.get('http://localhost:3001/instrumentos?_page='+ page)
                 .then(resp => {
                     instrumentos = resp.data;
 
@@ -161,10 +199,27 @@ http.createServer(function (req, res) {
                     });
 
                     res.write('</tbody></table>');
-                    res.write('</tbody></table>');
+
+                    var pags = resp.headers.link.split(',');
+                    var flagNext = false;
+
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Voltar</a></button>');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Home Page</a></button>');
+
+                    pags.forEach(pag => {
+                        if (pag.includes("first") && page != 1)
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Início da Lista</a></button>');
+                        else if (pag.includes("next")){
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Seguinte</a></button>');
+                            flagNext = true;
+                        }
+                        else if (pag.includes("prev"))
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Anterior</a></button>');
+                        else if (pag.includes("last") && flagNext)
+                            res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="'+pag.split(';')[0].replace('<', '').replace('>','').replace('3001', '4000') +'" >Último</a></button>');
+                    });
+
                     res.write('</div>');
                     res.write('</center>');
                     res.end();
@@ -187,9 +242,7 @@ http.createServer(function (req, res) {
                     res.write('<hr/>');
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Anterior</a></button>');
                     res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/instrumentos">Voltar</a></button>');
-                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="#">Seguinte</a></button>');
                     res.write('</div>');
                     res.write('</center>');
                     res.write('</div>');
