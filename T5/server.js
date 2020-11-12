@@ -38,7 +38,11 @@ http.createServer(function (req, res) {
                     });
 
                     res.write('</tbody></table>');
-                    res.write('<address>[<a href="/">Voltar</a>]</address>');
+                    res.write('<center>');
+                    res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Voltar</a></button>');
+                    res.write('</div>');
+                    res.write('</center>');
                     res.end();
                 })
                 .catch(function (error) {
@@ -96,7 +100,12 @@ http.createServer(function (req, res) {
                     });
 
                     res.write('</tbody></table>');
-                    res.write('<address>[<a href="/">Voltar</a>]</address>');
+                    res.write('</tbody></table>');
+                    res.write('<center>');
+                    res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Voltar</a></button>');
+                    res.write('</div>');
+                    res.write('</center>');
                     res.end();
                 })
                 .catch(function (error) {
@@ -116,7 +125,7 @@ http.createServer(function (req, res) {
                     res.write('<h6>' + data.id + '</h6>');
                     res.write('<p class="badge badge-secondary"> ' + data.duracao + ' anos</p>');
                     res.write('<hr class="my-4"/>');
-                    res.write('<p><b>Instrumento: </b>' + data.instrumento.id + '-' + data.instrumento.text + '</p>');
+                    res.write('<p><b>Instrumento: </b>' + data.instrumento.id + '-' + data.instrumento['#text'] + '</p>');
                     res.write('<hr/>');
                     res.write('<center>');
                     res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
@@ -147,12 +156,17 @@ http.createServer(function (req, res) {
                     instrumentos.forEach(element => {
                         res.write('<tr>');
                         res.write('<th scope="row"><a href="instrumentos/' + element.id + '">'+ element.id +'</a></th>');
-                        res.write('<td><a href="instrumentos/' + element.id + '">' + element.text + '</a></td>');
+                        res.write('<td><a href="instrumentos/' + element.id + '">' + element['#text'] + '</a></td>');
                         res.write('</tr>');
                     });
 
                     res.write('</tbody></table>');
-                    res.write('<address>[<a href="/">Voltar</a>]</address>');
+                    res.write('</tbody></table>');
+                    res.write('<center>');
+                    res.write('<div class="btn-group center" role="group" aria-label="Basic example">');
+                    res.write('<button type="button" class="btn btn-secondary"><a style="color: white; !important" href="/">Voltar</a></button>');
+                    res.write('</div>');
+                    res.write('</center>');
                     res.end();
                 })
                 .catch(function (error) {
@@ -168,7 +182,7 @@ http.createServer(function (req, res) {
                     res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
                     res.write(booststrapLink);
                     res.write('<div class="jumbotron">');
-                    res.write('<h1 class="display-4">' + data.text + '</h1>');
+                    res.write('<h1 class="display-4">' + data['#text']  + '</h1>');
                     res.write('<h6>' + data.id + '</h6>');
                     res.write('<hr/>');
                     res.write('<center>');
