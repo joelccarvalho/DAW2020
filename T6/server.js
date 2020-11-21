@@ -3,9 +3,9 @@ var axios = require('axios')
 var fs = require('fs')
 var static = require('./static')
 var {parse} = require('querystring')
+var md5 = require('md5');
 
 // Aux. Functions
-// Retrieves student info from request body --------------------------------
 function recoverInfo(request, callback){
     if(request.headers['content-type'] == 'application/x-www-form-urlencoded'){
         let body = ''
@@ -208,12 +208,21 @@ function header() {
 function editTask(data, d) {
     return `
         <br/>
-        <h2 id="addTasks">Editar tarefa: ${data.id}</h2>
+        <h2 id="addTasks" class="card-title">
+            <a href="#">
+                <span>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                    </svg>
+                </span>
+            </a>
+            Editar tarefa: ${data.id}
+        </h2>
 
         <form action="/tasks/edit" method="POST">
         <div class="form-group" style="display:none;">
             <label for="exampleInputID1">ID</label>
-            <input type="number" class="form-control" id="exampleInputID1" name="id" value="${data.id}">
+            <input type="text" class="form-control" id="exampleInputID1" name="id" value="${data.id}">
         </div>
         <div class="form-group" style="display:none;">
             <label for="exampleInputDatadue1">Data de Término</label>
@@ -250,6 +259,11 @@ function editTask(data, d) {
                     </label>
                 </div>
             </div>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="estadoCheck" ${(data.status == 1) ? "checked" : ""} name="status">
+            <label class="form-check-label" for="estadoCheck">Feita!</label>
         </div>
 
         <center>
@@ -316,8 +330,10 @@ function formAddTask() {
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Adicionar</button>
-        <button type="reset" class="btn btn-danger">Limpar</button>
+        <center>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="reset" class="btn btn-danger">Limpar</button>
+        </center>
     </form>
     `
 }
@@ -340,9 +356,9 @@ function spa(tasks, d, taskToEdit){
         <body>
             <div class = "container">
                 ${header()}
+                ${taskToEdit == null ? formAddTask() : editTask(taskToEdit, d)}
                 ${tasksNotPerformed(tasks, d)}
                 ${tasksPerformed(tasks, d)}
-                ${taskToEdit == null ? formAddTask() : editTask(taskToEdit, d)}
                 ${footer(d)}
             </div>
         </body>
@@ -373,6 +389,14 @@ var server = http.createServer(function (req, res) {
         switch(req.method){
             case "GET": 
                 // GET /tasks --------------------------------------------------------------------
+
+                /* POSSIBLE SOLUTION FOR PAGINATION
+                    if(((req.url == "/") || (req.url == "/tasks")) || req.url.match(/\/tasks\?_page=[0-9]+$/)){
+                        var page = req.url.match(/\/tasks\?_page=[0-9]+$/) != undefined ?  req.url.replace('/tasks?_page=', '') : 1;
+                        axios.get("http://localhost:3000/tasks?_sort=dateCreated&_page="+ page)
+                                                .....
+                */
+
                 if((req.url == "/") || (req.url == "/tasks")){
                     axios.get("http://localhost:3000/tasks?_sort=dateCreated")
                         .then(response => {
@@ -394,7 +418,7 @@ var server = http.createServer(function (req, res) {
                     res.end()
                 }
                 // DELETE /tasks/:id/delete --------------------------------------------------------------------
-                else if(/\/tasks\/[0-9]+\/delete$/.test(req.url)){
+                else if(/\/tasks\/[0-9a-z]+\/delete$/.test(req.url)){
                     var idTask = req.url.split("/")[2]
                     axios.delete("http://localhost:3000/tasks/" + idTask)
                         .then( response => {
@@ -418,7 +442,7 @@ var server = http.createServer(function (req, res) {
                         })
                 }
                 // GET /tasks/:id/edit --------------------------------------------------------------------
-                else if(/\/tasks\/[0-9]+\/edit$/.test(req.url)){
+                else if(/\/tasks\/[0-9a-z]+\/edit$/.test(req.url)){
                     var idTask = req.url.split("/")[2]
 
                     axios.get("http://localhost:3000/tasks/" + idTask)
@@ -452,6 +476,7 @@ var server = http.createServer(function (req, res) {
             case "POST":
                 if(req.url == '/tasks'){
                     recoverInfo(req, resultado => {
+                        resultado.id = md5(resultado.id)
                         resultado.dateCreated = dateFormatted() // add today date
                         resultado.status = 0
                         console.log('POST de tasks:' + JSON.stringify(resultado))
@@ -481,7 +506,12 @@ var server = http.createServer(function (req, res) {
                 else if (req.url == '/tasks/edit') {
                     recoverInfo(req, resultado => {
                         resultado.dateCreated = dateFormatted() // add today date
-                        console.log('PUT de task:' + JSON.stringify(resultado))
+                        
+                        if (resultado.status == "on") 
+                            resultado.status = 1
+                        else    
+                            resultado.status = 0
+
                         axios.put('http://localhost:3000/tasks/' + resultado.id, resultado)
                             .then(resp => {
                                 axios.get("http://localhost:3000/tasks?_sort=dateCreated")
