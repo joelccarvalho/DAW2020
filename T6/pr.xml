@@ -2,8 +2,8 @@
 
 <pr>
     <meta>
-        <key>JOEL_MEI_2020_T4</key>
-        <title>T5 - Desenvolvimento de um servidor Node.js e consumi-la.</title>
+        <key>JOEL_MEI_2020_T6</key>
+        <title>T6 - Desenvolvimento de um servidor Node.js e consumi-la.</title>
         <bdate>Novembro 2020</bdate>
         <edate>Novembro 2020</edate>
         <supervisor>José Carlos Ramalho</supervisor>
@@ -15,14 +15,21 @@
         </member>
     </team>
     <abstract>
-        <p>Utilizando o <i>dataset</i> db.json foi-me proposto a criação de um servidor <i>Node.js </i> para a interação com a <i>API</i> disponibilizado pelo professor.</p>
-        <p>O <i>Node.js</i> trata-se de um <i>software open-source, cross-platform,</i> e de um <i>runtime</i> de <i>JavaScript</i> que execute código de <i>JavaScript</i> a nível <i>backend</i> e <i>frontend</i></p>
+        <p>Utilizando o <i>dataset</i> db.json foi-me proposto a criação de um servidor <i>Node.js </i>.</p>
+        <p>Cada elemento do <i>dataset </i> representa uma tarefa e é constituído por 7 atributos: id, data de criação, data de término, quem, o quê, tipo e estado.</p>
+        <p><i>id</i> - Identificar único</p>
+        <p><i>dateCreated</i> - Data de criação</p>
+        <p><i>dateDue</i> - Data de término</p>
+        <p><i>who</i> - Quem vai realizar/realizou a tarefa</p>
+        <p><i>what</i> - Descrição</p>
+        <p><i>type</i> - Importância da tarefa: Normal, Importante ou Urgente</p>
+        <p><i>status</i> - Estado: 0 - não realizada | 1 - realizada</p>
         <p>Para a utilização do servidor deverá: 
-            1. Iniciar o servidor <i>node server.js</i>
-            2. Iniciar o servidor <i>Json json-server --watch db.json -p 3001</i> para a porta 3001, de modo a ter os dois servidos a correr em simultâneo.
-            3. Aceder a <link url="http://localhost:4000/">AQUI</link> e interarir com a aplicação.
+            1. Iniciar o servidor <i>npm run devstart</i>
+            2. Iniciar o servidor <i>JSON json-server --watch db.json</i>
+            3. Aceder a <link url="http://localhost:7777/">AQUI</link> e interagir com a aplicação.
         </p>
-        <p>Finalizando, o trabalho apresentado é composto apenas por pedidos <i>GET</i> do protocolo <i>HTTP</i>. O servidor da porta 4000 consome os serviços do servidor da porta 3001.</p>
+        <p>Finalizando, o trabalho apresentado é composto por pedidos <i>GET</i>(obter informação), <i>POST</i>(acrescentar informação), <i>PUT</i> (atualizar informação) e <i>DELETE</i> (apagar informação) do protocolo <i>HTTP</i>.</p>
     </abstract>
     <deriverables>
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T1">HTML e CSS: Gatos</link>
@@ -30,5 +37,6 @@
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T3">XSLT</link>
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T4">Servidor Node.js</link>
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T5">Serviços Node.js e consumo de uma API</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T6">Serviços Node.js e consumo de uma API - Gestão de Tarefa</link>
     </deriverables>
 </pr>
