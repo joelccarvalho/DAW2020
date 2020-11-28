@@ -2,8 +2,8 @@
 
 <pr>
     <meta>
-        <key>JOEL_MEI_2020_T6</key>
-        <title>T6 - Desenvolvimento de um servidor Node.js e consumi-la.</title>
+        <key>JOEL_MEI_2020_T7</key>
+        <title>T7 - Express.JS e Pug - Front e Back End</title>
         <bdate>Novembro 2020</bdate>
         <edate>Novembro 2020</edate>
         <supervisor>José Carlos Ramalho</supervisor>
@@ -15,20 +15,19 @@
         </member>
     </team>
     <abstract>
-        <p>Utilizando o <i>dataset</i> db.json foi-me proposto a criação de um servidor <i>Node.js </i>.</p>
-        <p>Cada elemento do <i>dataset </i> representa uma tarefa e é constituído por 7 atributos: id, data de criação, data de término, quem, o quê, tipo e estado.</p>
-        <p><i>id</i> - Identificar único</p>
-        <p><i>dateCreated</i> - Data de criação</p>
-        <p><i>dateDue</i> - Data de término</p>
-        <p><i>who</i> - Quem vai realizar/realizou a tarefa</p>
-        <p><i>what</i> - Descrição</p>
-        <p><i>type</i> - Importância da tarefa: Normal, Importante ou Urgente</p>
-        <p><i>status</i> - Estado: 0 - não realizada | 1 - realizada</p>
+        <p>Utilizando o <i>dataset</i> dos alunos de MEI da cadeira de DAW foi-me proposto a criação de uma <i>API </i>.</p>
+        <p>O dataset está armazenado numa base de dados <i>mongo</i>, cada elemento do <i>dataset </i> representa um aluno e é constituído por 4 atributos: numero, link para o git, nome e estado dos TPC's.</p>
+        <p><i>numero</i> - Identificar único</p>
+        <p><i>git</i> - Git onde os TPC's são armazenados</p>
+        <p><i>nome</i> - Nome do aluno</p>
+        <p><i>tpc</i> - 8 TPC's com um identificador boleano indicando se está realizado (1) ou não (0).</p>
         <p>Para a utilização do servidor deverá: 
-            1. Iniciar o servidor <i>npm run devstart</i>
-            2. Iniciar o servidor <i>JSON json-server --watch db.json</i>
-            3. Aceder a <link url="http://localhost:7777/">AQUI</link> e interagir com a aplicação.
+            1. Iniciar o servidor <i>nodemon</i> (Necessário instalar o pacote. Este permite compilar o código de forma automática após o guardar.)
+            OU
+            1. Iniciar o servidor <i>npm start</i> (Necessário quebrar o servidor em caso de alterações.)
+            3. Aceder a <link url="http://localhost:7700/">AQUI</link> e interagir com a aplicação.
         </p>
+        <p>Tecnologias abordadas: <i>Express.js</i>, <i>Jade</i>, <i>Pug</i> e <i>Node.js</i>.</p>
         <p>Finalizando, o trabalho apresentado é composto por pedidos <i>GET</i>(obter informação), <i>POST</i>(acrescentar informação), <i>PUT</i> (atualizar informação) e <i>DELETE</i> (apagar informação) do protocolo <i>HTTP</i>.</p>
     </abstract>
     <deriverables>
@@ -38,5 +37,6 @@
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T4">Servidor Node.js</link>
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T5">Serviços Node.js e consumo de uma API</link>
         <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T6">Serviços Node.js e consumo de uma API - Gestão de Tarefa</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T7">Express.js e Pug - Front e Back End</link>
     </deriverables>
 </pr>
