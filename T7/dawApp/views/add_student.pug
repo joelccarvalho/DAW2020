@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  form(action="/addStudent", method='POST')
+    .w3-card-4(style="width:70%")
+      header.w3-container.w3-light-grey
+        h3 
+          | Name 
+          input(type='text', name='nome', value='')
+      .w3-container 
+        p
+          | Number 
+          input(type='text', name='numero', value='')
+        hr
+        img.w3-left.w3-circle.w3-margin-right.image(src='https://picsum.photos/70')
+        p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s 
+        br
+        p 
+          | Link Git 
+          input(type='text', name='git', value='')
+        hr
+        h5 TPC's
+        input#tpc(type='checkbox', name='tpc1', checked=false) 
+        span TPC1 
+
+        input#tpc(type='checkbox', name='tpc2', checked=false) 
+        span TPC2 
+
+        input#tpc(type='checkbox', name='tpc3', checked=false) 
+        span TPC3 
+
+        input#tpc(type='checkbox', name='tpc4', checked=false)
+        span TPC4 
+
+        input#tpc(type='checkbox', name='tpc5', checked=false) 
+        span TPC5 
+
+        input#tpc(type='checkbox', name='tpc6', checked=false) 
+        span TPC6 
+
+        input#tpc(type='checkbox', name='tpc7', checked=false) 
+        span TPC7 
+
+        input#tpc(type='checkbox', name='tpc8', checked=false) 
+        span TPC8 
+        hr
+      button.w3-button.w3-block.w3-dark-grey(type='submit', value='Submit') Confirm
+        
+
+  

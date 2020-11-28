@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    .w3-card-4(style="width:70%")
+      header.w3-container.w3-light-grey
+        h3 #{student.nome} 
+      .w3-container 
+        p #{student.numero} 
+        hr
+        img.w3-left.w3-circle.w3-margin-right.image(src='https://picsum.photos/70')
+        p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s 
+        br
+        a(href=student.git) Go to Git!
+        hr
+        table.w3-table-all
+            tr 
+              th TPC Nº
+              th Status
+            each tpc, index in student.tpc
+              tr
+                td= index+1
+                td= (tpc == 0 ? 'Unrealized' : 'Realized')
+        hr
+      button.w3-button.w3-block.w3-dark-grey 
+        a(href='/students') Back to List
+
+  
