@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pr>
+    <meta>
+        <key>JOEL_MEI_2020_T8</key>
+        <title>T8 - Multi Upload - Multer</title>
+        <bdate>Dezembro 2020</bdate>
+        <edate>Dezembro 2020</edate>
+        <supervisor>José Carlos Ramalho</supervisor>
+    </meta>
+    <team>
+        <member id="PG42837">
+            <name>Joel Costa Carvalho</name>
+            <email>pg42837@alunos.uminho.pt</email>
+        </member>
+    </team>
+    <abstract>
+        <p>O objetivo do TPC8 consiste a inserção e carregamento de múltiplos ficheiros com a finalidade de os guardar no dataset <i>dbFiles.json</i>.</p>
+        <p>Para isso, o <i>package</i> utilizado foi o <i>multer</i>, este permite tratar, carregar e guardar os detalhes de cada imagem.</p>
+        <p>O <i>dataset</i> guarda informação relativa à data de carregamento, descrição, nome, tamanho e tipo do ficheiro.</p>
+        <p>Para a utilização do servidor deverá: $ <i>node server-upload.js</i>
+        </p>
+        <p>Tecnologias abordadas: <i>Express.js</i> e <i>Node.js</i>.</p>
+        <p>Finalizando, o trabalho apresentado é composto por pedidos <i>GET</i>(obter informação), <i>POST</i>(acrescentar informação), do protocolo <i>HTTP</i>.</p>
+    </abstract>
+    <deriverables>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T1">HTML e CSS: Gatos</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T2">Project Record: DTD e XML</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T3">XSLT</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T4">Servidor Node.js</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T5">Serviços Node.js e consumo de uma API</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T6">Serviços Node.js e consumo de uma API - Gestão de Tarefa</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T7">Express.js e Pug - Front e Back End</link>
+        <link url="https://github.com/joelccarvalho/DAW2020/tree/master/T8">Multi Upload - Multer</link>
+    </deriverables>
+</pr>
